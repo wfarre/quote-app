@@ -8,7 +8,6 @@ function App() {
   const [allQuotes, setAllQuotes] = useState([]);
   const [quote, setQuote] = useState({ text: "", author: "" });
   const [color, setColor] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
 
   const getRandomQuote = (quoteArray) => {
@@ -32,10 +31,6 @@ function App() {
       .catch((error) => setIsError(error));
   }, []);
 
-  useEffect(() => {
-    console.log(color);
-  }, [color]);
-
   const handleClick = () => {
     setQuote(getRandomQuote(allQuotes));
     setColor(getRandomColor());
@@ -43,40 +38,50 @@ function App() {
 
   return (
     <>
-      <div className={color}>
-        <div className={`back `}>
-          <figure className="card" id="quote-box">
-            <header className="card__header">
-              <blockquote className="quote" id="text">
-                <FontAwesomeIcon icon={faQuoteLeft} /> {quote.text}
-              </blockquote>
-              <figcaption className="author" id="author">
-                - {quote.author}
-              </figcaption>
-            </header>
+      {isError ? (
+        <p>Oops! Something went wrong...</p>
+      ) : (
+        <div className={color}>
+          <div className={`back`}>
+            <article className="card" id="quote-box">
+              <header className="card__header">
+                <blockquote className="quote" id="text">
+                  <FontAwesomeIcon icon={faQuoteLeft} /> {quote.text}
+                </blockquote>
+                <h1 className="author" id="author">
+                  - {quote.author}
+                </h1>
+              </header>
 
-            <footer className="card__footer">
-              <ul className="links">
-                <li className="links__item">
-                  <a className="btn btn--link">
-                    <FontAwesomeIcon icon={faTwitter} />
-                  </a>
-                </li>
-                <li className="links__item">
-                  <a className="btn btn--link">
-                    <FontAwesomeIcon icon={faTumblr} />
-                  </a>
-                </li>
-                <li className="links__item">
-                  <button className="btn" id="new-quote" onClick={handleClick}>
-                    New quote
-                  </button>
-                </li>
-              </ul>
-            </footer>
-          </figure>
+              <footer className="card__footer">
+                <ul className="links">
+                  <li className="links__item">
+                    <a className="btn btn--link" href="#" target="_blank">
+                      <FontAwesomeIcon icon={faTwitter} aria-hidden="true" />
+                      <span className="hidden">Visit our twitter</span>
+                    </a>
+                  </li>
+                  <li className="links__item">
+                    <a className="btn btn--link" href="#" target="_blank">
+                      <FontAwesomeIcon icon={faTumblr} aria-hidden="true" />
+                      <span className="hidden">Visit our tumblr</span>
+                    </a>
+                  </li>
+                  <li className="links__item">
+                    <button
+                      className="btn"
+                      id="new-quote"
+                      onClick={handleClick}
+                    >
+                      New quote
+                    </button>
+                  </li>
+                </ul>
+              </footer>
+            </article>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
