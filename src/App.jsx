@@ -60,6 +60,7 @@ function App() {
                       className="btn btn--link"
                       href="twitter.com/intent/tweet"
                       target="_blank"
+                      id="tweet-quote"
                     >
                       <FontAwesomeIcon icon={faTwitter} aria-hidden="true" />
                       <span className="hidden">Visit our twitter</span>
