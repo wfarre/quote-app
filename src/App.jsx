@@ -56,7 +56,11 @@ function App() {
               <footer className="card__footer">
                 <ul className="links">
                   <li className="links__item">
-                    <a className="btn btn--link" href="#" target="_blank">
+                    <a
+                      className="btn btn--link"
+                      href="twitter.com/intent/tweet"
+                      target="_blank"
+                    >
                       <FontAwesomeIcon icon={faTwitter} aria-hidden="true" />
                       <span className="hidden">Visit our twitter</span>
                     </a>
